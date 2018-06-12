@@ -26,6 +26,7 @@ import com.dremio.exec.store.avro.AvroFormatConfig;
 import com.dremio.exec.store.avro.AvroFormatPlugin;
 import com.dremio.exec.store.easy.arrow.ArrowFormatPlugin;
 import com.dremio.exec.store.easy.arrow.ArrowFormatPluginConfig;
+import com.dremio.exec.store.easy.newformat.NewFormatPluginConfig;
 import com.dremio.exec.store.easy.excel.ExcelFormatPlugin;
 import com.dremio.exec.store.easy.excel.ExcelFormatPluginConfig;
 import com.dremio.exec.store.easy.json.JSONFormatPlugin;
@@ -44,6 +45,7 @@ import com.dremio.service.namespace.file.proto.AvroFileConfig;
 import com.dremio.service.namespace.file.proto.ExcelFileConfig;
 import com.dremio.service.namespace.file.proto.FileConfig;
 import com.dremio.service.namespace.file.proto.JsonFileConfig;
+import com.dremio.service.namespace.file.proto.NewFileConfig;
 import com.dremio.service.namespace.file.proto.ParquetFileConfig;
 import com.dremio.service.namespace.file.proto.TextFileConfig;
 import com.dremio.service.namespace.file.proto.UnknownFileConfig;
@@ -151,6 +153,8 @@ public class PhysicalDatasetUtils {
       }
       case HTTP_LOG:
         break;
+      case NEWFORMAT:
+        return new NewFormatPluginConfig();
       default:
         break;
     }
@@ -177,6 +181,9 @@ public class PhysicalDatasetUtils {
     }
     if (formatPlugin instanceof ArrowFormatPlugin) {
       return new ArrowFileConfig();
+    }
+    if (formatPlugin instanceof com.dremio.exec.store.easy.newformat.NewFormatPlugin) {
+      return new NewFileConfig();
     }
     if (formatPlugin instanceof TextFormatPlugin) {
       final TextFileConfig textFileConfig = new TextFileConfig();

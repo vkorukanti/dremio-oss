@@ -91,7 +91,8 @@ public class EasyGroupScan extends AbstractFileGroupScan {
       case UNKNOWN:
       case HTTP_LOG:
       default:
-        throw new UnsupportedOperationException("format not supported " + datasetType);
+        return UserBitShared.CoreOperatorType.ARROW_SUB_SCAN_VALUE;
+        //throw new UnsupportedOperationException("format not supported " + datasetType);
     }
   }
 

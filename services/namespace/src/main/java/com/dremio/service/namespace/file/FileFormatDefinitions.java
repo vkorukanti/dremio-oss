@@ -23,6 +23,7 @@ import com.dremio.service.namespace.file.proto.ExcelFileConfig;
 import com.dremio.service.namespace.file.proto.FileType;
 import com.dremio.service.namespace.file.proto.HttpLogFileConfig;
 import com.dremio.service.namespace.file.proto.JsonFileConfig;
+import com.dremio.service.namespace.file.proto.NewFileConfig;
 import com.dremio.service.namespace.file.proto.ParquetFileConfig;
 import com.dremio.service.namespace.file.proto.TextFileConfig;
 import com.dremio.service.namespace.file.proto.UnknownFileConfig;
@@ -66,6 +67,9 @@ public class FileFormatDefinitions {
 
     types.put(ArrowFileConfig.class, FileType.ARROW);
     schemas.put(ArrowFileConfig.class, ArrowFileConfig.getSchema());
+
+    types.put(NewFileConfig.class, FileType.NEWFORMAT);
+    schemas.put(NewFileConfig.class, NewFileConfig.getSchema());
 
     types.put(UnknownFileConfig.class, FileType.UNKNOWN);
     schemas.put(UnknownFileConfig.class, UnknownFileConfig.getSchema());

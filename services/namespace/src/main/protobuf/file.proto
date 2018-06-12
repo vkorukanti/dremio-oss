@@ -34,6 +34,7 @@ enum FileType {
   EXCEL = 9;
   XLS = 10;
   ARROW = 11;
+  NEWFORMAT = 12;
 }
 
 message FileConfig {
@@ -117,6 +118,10 @@ message XlsFileConfig {
 }
 
 message ArrowFileConfig {
+  option (extends_class) = "com.dremio.service.namespace.file.FileFormat";
+}
+
+message NewFileConfig {
   option (extends_class) = "com.dremio.service.namespace.file.FileFormat";
 }
 
